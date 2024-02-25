@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui_ux/components/bottom_nav_bar.dart';
 import 'package:ui_ux/pages/cart_page.dart';
+import 'package:ui_ux/pages/category_pages/menpage.dart';
+import 'package:ui_ux/pages/category_pages/womenpage.dart';
 import 'package:ui_ux/pages/search_page.dart';
 import 'package:ui_ux/pages/profile_page.dart';
 import 'package:ui_ux/pages/shop_page.dart';
@@ -26,6 +28,8 @@ class _HomePageState extends State<HomePage> {
     const SearchPage(),
     const CartPage(),
     const ProfilePage(),
+    const MenPage(),
+    const WomenPage(),
   ];
 
   @override
@@ -43,9 +47,12 @@ class _HomePageState extends State<HomePage> {
             },
           );
         }),
-        title: Image.asset(
-          'assets/nike_logo_red.png',
-          height: 50,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Image.asset(
+            'assets/nike_logo_red.png',
+            height: 40,
+          ),
         ),
       ),
       drawer: Drawer(
@@ -60,22 +67,8 @@ class _HomePageState extends State<HomePage> {
                   'assets/nike_logo_red.png',
                   height: 150,
                   width: 150,
+                  color: Colors.black,
                 )),
-                Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.clear_all_rounded,
-                        color: Colors.black,
-                      ),
-                      title: Text(
-                        'Home',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                      ),
-                    )),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.0),
                     child: ListTile(
@@ -90,6 +83,12 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 20,
                         ),
                       ),
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 4;
+                        });
+                        Navigator.pop(context);
+                      },
                     )),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -105,10 +104,16 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 20,
                         ),
                       ),
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = 5;
+                        });
+                        Navigator.pop(context);
+                      },
                     )),
               ],
             ),
-            Padding(
+            const Padding(
                 padding: EdgeInsets.only(
                   bottom: 20.0,
                   left: 10.0,

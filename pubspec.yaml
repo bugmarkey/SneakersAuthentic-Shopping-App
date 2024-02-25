@@ -33,6 +33,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts:
   google_nav_bar: ^5.0.6
+  provider:
+  carousel_slider:
 
 dev_dependencies:
   flutter_test:

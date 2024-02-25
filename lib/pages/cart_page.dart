@@ -6,7 +6,8 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const Text('Cart Page'),
+      alignment: Alignment.center,
+      child: Center(child: Text('Cart Page need to be added here!')),
     );
   }
 }

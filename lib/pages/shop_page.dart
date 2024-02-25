@@ -1,6 +1,12 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:ui_ux/components/shoe_tile.dart';
+import 'package:ui_ux/models/ads.dart';
+import 'package:ui_ux/models/cart.dart';
+import 'package:ui_ux/models/shoe.dart';
+import 'package:ui_ux/pages/shoe_description_page.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({super.key});
@@ -10,44 +16,84 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+//navigate to the show descripiton page
+  void navigateToShoeDescription(int index) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return ShoeDescription(
+          shoe: Provider.of<Cart>(context, listen: false).getShoes()[index]);
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      body: Column(
-        children: [
-          //automated scrollable
-          //important offer deals
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  'New Arrivals 🔥',
-                  style: GoogleFonts.bebasNeue(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  'View All',
-                  style: GoogleFonts.bebasNeue(
-                    fontSize: 20,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
+    return Consumer<Cart>(
+      builder: (context, value, child) => SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            //automated scrollable
+            //important offer deals
+            SizedBox(
+              height: 20,
             ),
-          ),
-          const SizedBox(height: 20),
-          //Shoe List
-          Expanded(child: ListView.builder(itemBuilder: (context, index) {
-            return ShoeTile(shoe: , //new
-             //new);
-      )})),
-        ],
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    'New Arrivals 🔥',
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'View All',
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 20,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            //Shoe List
+            Container(
+                height: 400,
+                child: ListView.builder(
+                    itemCount: 4,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      ShoeList shoe = value.getShoes()[index];
+                      return ShoeTile(
+                        shoe: shoe,
+                        onTap: () => navigateToShoeDescription(index),
+                      );
+                    })),
+            SizedBox(
+              height: 20,
+            ),
+            CarouselSlider(
+              options: CarouselOptions(
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 5),
+                aspectRatio: 2.0,
+                viewportFraction: 1.0,
+              ),
+              items: imageList
+                  .map((item) => Container(
+                        child: Center(
+                            child: Image.asset(item,
+                                fit: BoxFit.cover, width: 3000, height: 170)),
+                      ))
+                  .toList(),
+            )
+          ],
+        ),
       ),
     );
   }

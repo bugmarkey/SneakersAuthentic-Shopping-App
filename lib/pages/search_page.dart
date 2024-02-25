@@ -6,7 +6,8 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const Text('Category Page'),
+      alignment: Alignment.center,
+      child: Center(child: const Text('Search Page need to be added here!')),
     );
   }
 }
