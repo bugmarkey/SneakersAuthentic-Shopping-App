@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ui_ux/models/shoe.dart';
+import 'package:ui_ux/pages/cart_page.dart';
 
 class ShoeDescription extends StatefulWidget {
   final ShoeList shoe;
@@ -31,7 +33,7 @@ class _ShoeDescriptionState extends State<ShoeDescription> {
           Expanded(
               child: ListView(
             children: [
-              Image.asset(widget.shoe.imageUrl),
+              Image.network(widget.shoe.imageUrl),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -141,17 +143,23 @@ class _ShoeDescriptionState extends State<ShoeDescription> {
                 ),
               ),
             ),
-            Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey[800],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.shopping_bag,
-                  color: Colors.white,
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const CartPage()));
+              },
+              child: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.shopping_bag,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

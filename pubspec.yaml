@@ -35,6 +35,13 @@ dependencies:
   google_nav_bar: ^5.0.6
   provider:
   carousel_slider:
+  firebase_core: ^2.27.1
+  firebase_auth: ^4.17.9
+  cloud_firestore: ^4.15.9
+  firebase_database: ^10.4.10
+  firebase_storage: ^11.6.10
+  image_picker: ^1.0.7
+  file_picker: ^8.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -73,11 +80,18 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: Helvetica
+      fonts:
+        - asset: assets/fonts/Helvetica-Bold.ttf
+
+    - family: HelveticaNeue
+      fonts:
+        - asset: assets/fonts/helvetica-compressed-5871d14b6903a.otf
+
+    - family: Bebas
+      fonts:
+        - asset: assets/fonts/BebasNeue-Regular.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_ux/components/bottom_nav_bar.dart';
 import 'package:ui_ux/pages/cart_page.dart';
@@ -113,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                     )),
               ],
             ),
-            const Padding(
+            Padding(
                 padding: EdgeInsets.only(
                   bottom: 20.0,
                   left: 10.0,
@@ -130,6 +131,9 @@ class _HomePageState extends State<HomePage> {
                       fontSize: 20,
                     ),
                   ),
+                  onTap: () async {
+                    await FirebaseAuth.instance.signOut();
+                  },
                 ))
           ],
         ),

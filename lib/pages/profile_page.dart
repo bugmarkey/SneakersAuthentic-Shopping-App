@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_ux/firebase/add_shoepage.dart';
+import 'package:ui_ux/firebase/product_upload.dart';
+import 'package:ui_ux/models/advertisement_carousel.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -57,13 +59,61 @@ class _ProfilePageState extends State<ProfilePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const AddShoePage()));
+                          builder: (context) => ProductUploadPage()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Add Shoe',
+                      'Add Product',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Icon(Icons.arrow_forward_ios),
+                  ],
+                ),
+              ),
+            ),
+            //add carousel images
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AdUpload()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Add Carousel Images',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Icon(Icons.arrow_forward_ios),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+              child: ElevatedButton(
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Sign Out',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,

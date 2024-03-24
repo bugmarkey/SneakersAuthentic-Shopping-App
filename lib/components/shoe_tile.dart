@@ -5,67 +5,112 @@ import 'package:ui_ux/models/shoe.dart';
 class ShoeTile extends StatelessWidget {
   final void Function()? onTap;
   final ShoeList shoe;
+  final double nameScaleFactor;
 
-  ShoeTile({super.key, required this.shoe, required this.onTap});
+  ShoeTile(
+      {super.key,
+      required this.shoe,
+      required this.onTap,
+      required this.nameScaleFactor});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        margin: EdgeInsets.only(
-          left: 20,
-        ),
-        width: 280,
-        height: 20,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          children: [
-            //shoe img
-            Image.asset(shoe.imageUrl),
-            //price
-            Text(
-              shoe.name,
-              style: GoogleFonts.bebasNeue(fontSize: 35, color: Colors.black),
-            ),
-            //price and cart
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Text(
-                      '\₹ ${shoe.price}',
-                      style: GoogleFonts.bebasNeue(
-                        fontSize: 30,
-                        color: Colors.black,
-                      ),
-                    ),
+      child: AspectRatio(
+        aspectRatio: 3 / 3,
+        child: Container(
+          margin: EdgeInsets.only(
+            left: 20,
+          ),
+          width: 280,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: LayoutBuilder(builder: (context, constraints) {
+            return Column(
+              children: [
+                //shoe img
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Image.network(
+                    shoe.imageUrl,
+                    height: constraints.maxHeight * 0.5,
+                    width: constraints.maxWidth,
+                    fit: BoxFit.scaleDown,
                   ),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
+                ),
+                //price
+                Text(
+                  shoe.name,
+                  style: GoogleFonts.bebasNeue(
+                      fontSize: constraints.maxHeight * 0.12 * nameScaleFactor,
+                      color: Colors.black),
+                ),
+                //price and cart
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: constraints.maxWidth * 0.05),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: constraints.maxWidth * 0.1),
+                            child: Text(
+                              '\₹ ${shoe.price}',
+                              style: GoogleFonts.bebasNeue(
+                                fontSize: constraints.maxHeight *
+                                    0.1 *
+                                    nameScaleFactor,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: constraints.maxWidth * 0.1),
+                            child: Text(
+                              shoe.category,
+                              style: GoogleFonts.bebasNeue(
+                                fontSize: constraints.maxHeight *
+                                    0.05 *
+                                    nameScaleFactor,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.white,
-                    ),
+                      Padding(
+                        padding:
+                            EdgeInsets.only(top: constraints.maxHeight * 0.03),
+                        child: Container(
+                          padding: EdgeInsets.all(constraints.maxWidth * 0.05),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            )
-          ],
+                )
+              ],
+            );
+          }),
         ),
       ),
     );
