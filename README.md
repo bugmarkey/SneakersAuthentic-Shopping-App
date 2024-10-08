@@ -1,7 +1,7 @@
 # 👟 SneakersAuthentic 🛍️
 
-<div style="background-color: white; display: inline-block; padding: 10px;">
-  <img src="assets/logo_textured.png" alt="SneakersAuthentic Logo" width="100%"/>
+<div style="background-color: white; display: inline-block; padding: 10px; border-radius: 5px;">
+  <img src="assets/appbar_logo.png" alt="SneakersAuthentic Logo" width="100%" style="display: block;"/>
 </div>
 
 ## 🌟 Description
