@@ -6,12 +6,15 @@ class ShoeTile extends StatelessWidget {
   final void Function()? onTap;
   final ShoeList shoe;
   final double nameScaleFactor;
+  final Widget? trailing;
 
-  ShoeTile(
-      {super.key,
-      required this.shoe,
-      required this.onTap,
-      required this.nameScaleFactor});
+  const ShoeTile({
+    super.key,
+    required this.shoe,
+    required this.onTap,
+    required this.nameScaleFactor,
+    this.trailing,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +23,7 @@ class ShoeTile extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 3 / 3,
         child: Container(
-          margin: EdgeInsets.only(
-            left: 20,
-          ),
+          margin: const EdgeInsets.only(left: 20),
           width: 280,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -31,9 +32,9 @@ class ShoeTile extends StatelessWidget {
           child: LayoutBuilder(builder: (context, constraints) {
             return Column(
               children: [
-                //shoe img
+                // Shoe image
                 Padding(
-                  padding: EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(5.0),
                   child: Image.network(
                     shoe.imageUrl,
                     height: constraints.maxHeight * 0.5,
@@ -41,73 +42,55 @@ class ShoeTile extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                   ),
                 ),
-                //price
-                Text(
-                  shoe.name,
-                  style: GoogleFonts.bebasNeue(
-                      fontSize: constraints.maxHeight * 0.12 * nameScaleFactor,
-                      color: Colors.black),
-                ),
-                //price and cart
+                // Shoe name
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: constraints.maxWidth * 0.05),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: constraints.maxWidth * 0.1),
-                            child: Text(
-                              '\₹ ${shoe.price}',
-                              style: GoogleFonts.bebasNeue(
-                                fontSize: constraints.maxHeight *
-                                    0.1 *
-                                    nameScaleFactor,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: constraints.maxWidth * 0.1),
-                            child: Text(
-                              shoe.category,
-                              style: GoogleFonts.bebasNeue(
-                                fontSize: constraints.maxHeight *
-                                    0.05 *
-                                    nameScaleFactor,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                        ],
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    shoe.name,
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: constraints.maxHeight * 0.08 * nameScaleFactor,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                // Price and trailing widget
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      '₹ ${shoe.price}',
+                      style: GoogleFonts.bebasNeue(
+                        fontSize:
+                            constraints.maxHeight * 0.10 * nameScaleFactor,
+                        color: Colors.black,
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsets.only(top: constraints.maxHeight * 0.03),
-                        child: Container(
-                          padding: EdgeInsets.all(constraints.maxWidth * 0.05),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                          ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(
+                        shoe.category,
+                        style: GoogleFonts.bebasNeue(
+                          fontSize:
+                              constraints.maxHeight * 0.05 * nameScaleFactor,
+                          color: Colors.grey,
                         ),
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+                if (trailing != null)
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: constraints.maxHeight * 0.03,
+                      ),
+                      child: trailing!,
+                    ),
                   ),
-                )
               ],
             );
           }),

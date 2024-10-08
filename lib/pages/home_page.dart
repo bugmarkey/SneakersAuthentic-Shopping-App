@@ -49,10 +49,10 @@ class _HomePageState extends State<HomePage> {
           );
         }),
         title: Padding(
-          padding: const EdgeInsets.only(left: 20.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: Image.asset(
-            'assets/nike_logo_red.png',
-            height: 40,
+            'assets/appbar_plain.png',
+            height: 50,
           ),
         ),
       ),
@@ -65,19 +65,19 @@ class _HomePageState extends State<HomePage> {
               children: [
                 DrawerHeader(
                     child: Image.asset(
-                  'assets/nike_logo_red.png',
+                  'assets/logo_plain.png',
                   height: 150,
                   width: 150,
                   color: Colors.black,
                 )),
                 Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: ListTile(
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.man,
                         color: Colors.black,
                       ),
-                      title: Text(
+                      title: const Text(
                         'Men',
                         style: TextStyle(
                           color: Colors.black,
@@ -92,13 +92,13 @@ class _HomePageState extends State<HomePage> {
                       },
                     )),
                 Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: ListTile(
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.woman,
                         color: Colors.black,
                       ),
-                      title: Text(
+                      title: const Text(
                         'Women',
                         style: TextStyle(
                           color: Colors.black,
@@ -115,16 +115,16 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Padding(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   bottom: 20.0,
                   left: 10.0,
                 ),
                 child: ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.logout,
                     color: Colors.black,
                   ),
-                  title: Text(
+                  title: const Text(
                     'Logout',
                     style: TextStyle(
                       color: Colors.black,

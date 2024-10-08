@@ -4,7 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 class BottomNav extends StatelessWidget {
   final void Function(int)? onTabChange;
   final int initialIndex;
-  BottomNav({super.key, required this.onTabChange, this.initialIndex = 0});
+  const BottomNav({super.key, required this.onTabChange, this.initialIndex = 0});
 
   @override
   Widget build(BuildContext context) {

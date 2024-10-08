@@ -43,23 +43,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    'assets/nike_logo_red.png',
-                    height: 90,
+                    'assets/logo_textured.png',
+                    height: 150,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(
+                  /*const Text(
                     'Welcome!',
                     style: TextStyle(
-                      fontSize: 70,
+                      fontSize: 50,
                       color: Colors.black,
                       fontFamily: 'Bebas',
                     ),
                   ),
                   const SizedBox(
                     height: 1,
-                  ),
+                  ),*/
 
                   //Email
                   Container(

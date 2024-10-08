@@ -6,6 +6,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 
 class ProductUploadPage extends StatefulWidget {
+  const ProductUploadPage({super.key});
+
   @override
   _ProductUploadPageState createState() => _ProductUploadPageState();
 }
@@ -47,7 +49,7 @@ class _ProductUploadPageState extends State<ProductUploadPage> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Uploaded Successfully'),
         ),
       );
@@ -58,12 +60,12 @@ class _ProductUploadPageState extends State<ProductUploadPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Upload Product'),
+        title: const Text('Upload Product'),
       ),
       body: Form(
         key: _formKey,
         child: ListView(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           children: <Widget>[
             // Image
             GestureDetector(
@@ -73,38 +75,38 @@ class _ProductUploadPageState extends State<ProductUploadPage> {
                 color: Colors.grey[200],
                 child: _image != null
                     ? Image.file(File(_image!.path))
-                    : Icon(Icons.add_a_photo),
+                    : const Icon(Icons.add_a_photo),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Name
             TextFormField(
-              decoration: InputDecoration(labelText: 'Name'),
+              decoration: const InputDecoration(labelText: 'Name'),
               onChanged: (value) => _productName = value,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Category
             TextFormField(
-              decoration: InputDecoration(labelText: 'Category'),
+              decoration: const InputDecoration(labelText: 'Category'),
               onChanged: (value) => _productCategory = value,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Description
             TextFormField(
-              decoration: InputDecoration(labelText: 'Description'),
+              decoration: const InputDecoration(labelText: 'Description'),
               onChanged: (value) => _productDescription = value,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Price
             TextFormField(
-              decoration: InputDecoration(labelText: 'Price'),
+              decoration: const InputDecoration(labelText: 'Price'),
               onChanged: (value) => _productPrice = value,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Upload Button
             ElevatedButton(
               onPressed: uploadProduct,
-              child: Text('Upload Product'),
+              child: const Text('Upload Product'),
             ),
           ],
         ),

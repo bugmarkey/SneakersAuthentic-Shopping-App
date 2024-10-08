@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Container(
                         height: 100,
                         width: 100,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 image: AssetImage('assets/jordan.png'),
@@ -38,7 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 20,
                       ),
                       //name and email
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -59,9 +59,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ProductUploadPage()));
+                          builder: (context) => const ProductUploadPage()));
                 },
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       MaterialPageRoute(
                           builder: (context) => const AdUpload()));
                 },
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -109,7 +109,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
                 },
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(

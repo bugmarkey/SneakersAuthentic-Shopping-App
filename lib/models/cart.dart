@@ -1,12 +1,13 @@
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_ux/models/shoe.dart';
 
 class Cart extends ChangeNotifier {
-  //list of shoes
+  // List of shoes
   List<ShoeList> shoes = [];
-  //user cart
-  List<ShoeList> userCart = [];
+  // User cart
+  Map<ShoeList, int> userCart = {};
   List<ShoeList> menShoes = [];
   List<ShoeList> womenShoes = [];
 
@@ -20,19 +21,23 @@ class Cart extends ChangeNotifier {
     List<ShoeList> shoes =
         snapshot.docs.map((doc) => ShoeList.fromFirestore(doc)).toList();
     this.shoes = shoes;
-
+    shuffleShoes();
     menShoes = getShoesByCategory('men');
     womenShoes = getShoesByCategory('women');
-
     notifyListeners();
   }
 
-//To Seperate the shoe category
+  // Shuffle the list of shoes
+  void shuffleShoes() {
+    shoes.shuffle(Random());
+  }
+
+  // To separate the shoe category
   List<ShoeList> getShoesByCategory(String category) {
     return shoes.where((shoe) => shoe.category == category).toList();
   }
 
-//men shoes
+  // Men shoes
   List<ShoeList> men() {
     return menShoes;
   }
@@ -41,25 +46,33 @@ class Cart extends ChangeNotifier {
     return womenShoes;
   }
 
-  //list of shoes for sale
+  // List of shoes for sale
   List<ShoeList> getShoes() {
     return shoes;
   }
 
-  //get cart
-  List<ShoeList> getCart() {
+  // Get cart
+  Map<ShoeList, int> getCart() {
     return userCart;
   }
 
-  //add to cart
+  // Add to cart
   void addToCart(ShoeList shoe) {
-    userCart.add(shoe);
+    if (userCart.containsKey(shoe)) {
+      userCart[shoe] = userCart[shoe]! + 1;
+    } else {
+      userCart[shoe] = 1;
+    }
     notifyListeners();
   }
 
-  //remove from cart
+  // Remove from cart
   void removeFromCart(ShoeList shoe) {
-    userCart.remove(shoe);
+    if (userCart.containsKey(shoe) && userCart[shoe]! > 1) {
+      userCart[shoe] = userCart[shoe]! - 1;
+    } else {
+      userCart.remove(shoe);
+    }
     notifyListeners();
   }
 }

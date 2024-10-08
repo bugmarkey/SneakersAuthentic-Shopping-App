@@ -94,7 +94,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    'assets/nike_logo_red.png',
+                    'assets/logo_plain.png',
                     height: 50,
                   ),
                   const SizedBox(

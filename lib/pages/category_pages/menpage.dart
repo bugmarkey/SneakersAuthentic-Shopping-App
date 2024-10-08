@@ -23,14 +23,14 @@ class _MenPageState extends State<MenPage> {
       body: GridView.builder(
         padding: const EdgeInsets.all(10.0),
         itemCount: menShoes.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, // Number of columns
             childAspectRatio: 0.9,
             mainAxisSpacing: 10),
         itemBuilder: (context, index) {
           return ShoeTile(
               shoe: menShoes[index],
-              nameScaleFactor: 1.2,
+              nameScaleFactor: 1.1,
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ShoeDescription(

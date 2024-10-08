@@ -9,32 +9,32 @@ class WomenPage extends StatefulWidget {
   const WomenPage({super.key});
 
   @override
-  State<WomenPage> createState() => _MenPageState();
+  State<WomenPage> createState() => _WomenPageState();
 }
 
-class _MenPageState extends State<WomenPage> {
+class _WomenPageState extends State<WomenPage> {
   @override
   Widget build(BuildContext context) {
     var cart = Provider.of<Cart>(context);
-    var womenShoes = cart.getShoesByCategory('women');
+    var menShoes = cart.getShoesByCategory('women');
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: GridView.builder(
         padding: const EdgeInsets.all(10.0),
-        itemCount: womenShoes.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        itemCount: menShoes.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, // Number of columns
-            childAspectRatio: 0.7,
+            childAspectRatio: 0.9,
             mainAxisSpacing: 10),
         itemBuilder: (context, index) {
           return ShoeTile(
-              shoe: womenShoes[index],
-              nameScaleFactor: 0.1,
+              shoe: menShoes[index],
+              nameScaleFactor: 1.1,
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ShoeDescription(
-                    shoe: womenShoes[index],
+                    shoe: menShoes[index],
                   );
                 }));
               });
