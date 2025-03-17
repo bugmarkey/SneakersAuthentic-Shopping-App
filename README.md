@@ -104,7 +104,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-Made with ❤️ by the SneakersAuthentic Team
+Made with ❤️ by BugMarKey
 
 [![GitHub stars](https://img.shields.io/github/stars/bugmarkey/SneakersAuthentic-Shopping-App.svg?style=social&label=Star)](https://github.com/bugmarkey/SneakersAuthentic-Shopping-App)
 [![GitHub forks](https://img.shields.io/github/forks/bugmarkey/SneakersAuthentic-Shopping-App.svg?style=social&label=Fork)](https://github.com/bugmarkey/SneakersAuthentic-Shopping-App/fork)
